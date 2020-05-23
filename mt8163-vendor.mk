@@ -28,6 +28,16 @@ PRODUCT_PACKAGES +=\
 PRODUCT_PACKAGES +=\
    YGPS
 
+# Remove Unused/Useless packages
+PRODUCT_PACKAGES +=\
+   RemovePackages
+
+# Init
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH_VENDOR)/proprietary/external/init/mediaserver.rc:system/etc/init/mediaserver.rc \
+    $(LOCAL_PATH_VENDOR)/proprietary/external/init/audioserver.rc:system/etc/init/audioserver.rc
+
+# Property Overrides
 PRODUCT_PROPERTY_OVERRIDES  += \
    ro.config.hw_quickpoweron=true \
    ro.build.shutdown_timeout=0
