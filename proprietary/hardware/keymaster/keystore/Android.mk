@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(TARGET_PROVIDES_KEYMASTER_HAL),false) 
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := keystore.$(TARGET_BOARD_PLATFORM)
@@ -25,3 +26,4 @@ LOCAL_C_INCLUDES += \
 LOCAL_SHARED_LIBRARIES += libcrypto liblog libutils libtz_uree
 
 include $(BUILD_SHARED_LIBRARY)
+endif

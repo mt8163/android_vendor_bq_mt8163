@@ -1,5 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(TARGET_PROVIDES_KEYMASTER_HAL),false)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libtz_uree
@@ -18,4 +19,4 @@ LOCAL_CFLAGS += -Wall -Wno-unused-parameter -Werror
 LOCAL_SHARED_LIBRARIES += liblog
 
 include $(BUILD_SHARED_LIBRARY)
-
+endif
