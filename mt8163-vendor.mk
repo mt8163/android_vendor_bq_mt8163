@@ -16,10 +16,6 @@
 
 LOCAL_PATH_VENDOR := vendor/bq/mt8163
 
-# Email
-PRODUCT_PACKAGES += \
-   Email
-
 # Debugging tool
 PRODUCT_PACKAGES +=\
    debug_tool
