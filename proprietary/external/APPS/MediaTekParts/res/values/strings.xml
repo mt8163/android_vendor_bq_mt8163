@@ -9,7 +9,7 @@
 
     <!-- Gestures -->
     <string name="pref_dt2w_title">Double tap to wake</string>
-    <string name="pref_dt2w_description"></string>
+    <string name="pref_dt2w_description">Enable/Disable the \"Double Tap To Wake\" feature (DT2W).</string>
     <string name="pref_dt2w_key" translatable="false">pref_dt2w</string>
 
     <!-- GPS/AGPS -->

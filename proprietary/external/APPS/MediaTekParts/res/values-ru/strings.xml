@@ -9,7 +9,7 @@
 
     <!-- Gestures -->
     <string name="pref_dt2w_title">D2TW (Double Tap To Wake)</string>
-    <string name="pref_dt2w_description"></string>
+    <string name="pref_dt2w_description">Включите/Oтключите функцию \"Двойное касание для пробуждения\" (DT2W).</string>
 
     <!-- GPS/AGPS -->
     <string name="pref_gps_title">YGPS</string>
