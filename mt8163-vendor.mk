@@ -28,6 +28,10 @@ PRODUCT_PACKAGES +=\
 PRODUCT_PACKAGES +=\
    RemovePackages
 
+# MediaTekParts
+PRODUCT_PACKAGES +=\
+   MediaTekParts
+
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH_VENDOR)/proprietary/external/init/mediaserver.rc:system/etc/init/mediaserver.rc \
