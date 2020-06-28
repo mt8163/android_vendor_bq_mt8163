@@ -48,7 +48,9 @@ sh /device/bq/aquaris_m8/install.sh
 ```bash
 curl  https://raw.githubusercontent.com/mt8163/android_vendor_bq_mt8163/lineage-15.1/build/build.sh > build.sh
 chmod a+x build.sh
-./build.sh
+./build.sh device_codename variant_version os_version
+# (Example):
+./build.sh aquaris_m8 userdebug 15.1
 ```
 
 **Ensure you have `adb` and `fastboot` installed and in your path before continuing!**
