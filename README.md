@@ -41,12 +41,12 @@ git clone https://github.com/mt8163/android_vendor_bq_aquaris_m8 vendor/bq/aquar
 
 #### 4. Apply device patches
 ```bash
-sh /device/bq/aquaris_m8/install.sh
+sh /device/bq/aquaris_m8/patches/install.sh
 ```
 
 #### 5. Build!
 ```bash
-curl  https://raw.githubusercontent.com/mt8163/android_vendor_bq_mt8163/lineage-15.1/build/build.sh > build.sh
+curl https://raw.githubusercontent.com/mt8163/android_vendor_bq_mt8163/lineage-15.1/build/build.sh > build.sh
 chmod a+x build.sh
 ./build.sh device_codename variant_version os_version
 # (Example):
@@ -62,12 +62,6 @@ apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multi
 
 # Older than Ubuntu 16.04
 apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk2.8-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
-
-# All versions
-croot
-source ./build/envsetup.sh
-brunch lineage_aquaris_m8-userdebug
-```
 
 ### Improving build times
 
@@ -87,5 +81,4 @@ ccache -M 75G
 > This needs to be run once. Anywhere from 25GB-100GB will result in very noticeably increased build speeds (for instance, a typical 1hr build time can be reduced to 20min). **If you’re only building for one device, 25GB-50GB is fine.** If you plan to build for several devices that do not share the same kernel source, aim for 75GB-100GB. This space will be permanently occupied on your drive, so take this into consideration.
 >
 > [*From Lineage OS Wiki*](https://wiki.lineageos.org/devices/bacon/build#turn-on-caching-to-speed-up-build)
-
 
