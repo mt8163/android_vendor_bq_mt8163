@@ -35,7 +35,7 @@ DATE=$(date +"%Y-%m-%d")
 VERSION=$3
 VARIANT=$2
 DEVICE=$1
-LOG='build_log-lineage-$VERSION-$DEVICE-$VARIANT-$DATE.log'
+LOG=build_log-lineage-$VERSION-$DEVICE-$VARIANT-$DATE.log
 
 # Extra values (you can edit those if you want)
 INSTALL_CLEAN='0'
@@ -64,7 +64,7 @@ function check_log() {
     if [ -f "$(pwd)/$LOG" ]; then
         echo -ne "$YELLOW""INFO: Regenerating build log...""$RC"
         echo ""
-        rm $LOG
+        rm "$LOG"
         check_ret "touch $LOG"
     else
         check_ret "touch $LOG"
@@ -91,6 +91,7 @@ function check_argvs() {
         echo ""
         echo -ne "$RED""ERROR: First argument is missing &/or empty...""$RC"
         echo ""
+        echo ""
         exit 1
     fi
     if [[ "$DEVICE" == *"-h"* ]]; then
@@ -103,11 +104,13 @@ function check_argvs() {
         echo ""
         echo -ne "$RED""ERROR: Second argument is missing &/or empty...""$RC"
         echo ""
+        echo ""
         exit 1
     fi
     if [ -z "$VERSION" ]; then
         echo ""
         echo -ne "$RED""ERROR: Third argument is missing &/or empty...""$RC"
+        echo ""
         echo ""
         exit 1
     fi
@@ -118,7 +121,7 @@ function check_build() {
     SUCCEED=$(cat $LOG | tail | grep "make completed successfully")
     RES1=$?
     FAILED=$(cat $LOG | tail | grep "failed to build some targets")
-    RES22=$?
+    RES2=$?
 
     if [ "$RES1" -eq "0" ]; then
         echo -ne "$GREEN""INFO: Build completed succsesfully!""$RC"
@@ -152,7 +155,7 @@ check_argvs
 check_user
 check_log
 
-sleep 3
+sleep 1.5
 
 # Export build variables
 echo -ne "$YELLOW""INFO: Setting build exports...\n""$RC"
@@ -176,12 +179,12 @@ lunch lineage_$DEVICE-$VARIANT
 # Is installclean option enabled?
 if [ "$INSTALL_CLEAN" -eq "1" ]; then
     echo -ne "$YELLOW""INFO: Make install clean enabled. Doing installclean before build...\n""$RC"
-    make installclean -j$(nproc)
+    make installclean -j"$(nproc)"
 fi
 
 # Make bacon
 echo -ne "$YELLOW""INFO: Making bacon/Building for $DEVICE... This will take a while depending on your computer...\n""$RC"
-mka bacon -j$(nproc) | tee $LOG
+mka bacon -j"$(nproc)" | tee "$LOG"
 
 # Flush the log
 sync; sleep 3
