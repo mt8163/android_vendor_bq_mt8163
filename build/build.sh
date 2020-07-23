@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Android (LineageOS) compilation script.
+# Android compilation script.
 #
 # Copyright (C) 2020 R0rt1z2.
 #
@@ -35,7 +35,7 @@ DATE=$(date +"%Y-%m-%d")
 VERSION=$3
 VARIANT=$2
 DEVICE=$1
-LOG=build_log-lineage-$VERSION-$DEVICE-$VARIANT-$DATE.log
+LOG=build_log-bootleg-$VERSION-$DEVICE-$VARIANT-$DATE.log
 
 # Extra values (you can edit those if you want)
 INSTALL_CLEAN='0'
@@ -143,12 +143,12 @@ function check_build() {
 
 # Print fancy banner
 echo ""
-echo -ne "$CYAN""               __   _                        ____  ____     \n""$RC"
-echo -ne "$CYAN""              / /  (_)__  ___ ___  ____ ___ / __ \/ __/     \n""$RC"
-echo -ne "$CYAN""             / /__/ / _ \/ -_) _ \/ _  / -_) /_/ /\ \       \n""$RC"
-echo -ne "$CYAN""            /____/_/_//_/\__/\_,_/\_, /\__/\____/___/       \n""$RC"
-echo -ne "$CYAN""                                 /___/                      \n""$RC"
-echo ""
+echo -ne "$CYAN""           ___              _     __                                    \n""$RC"
+echo -ne "$CYAN""          /  __\ ___   ___ | |_  / /  ___  __ _  __ _  ___ _ __ ___     \n""$RC"
+echo -ne "$CYAN""          /__\/// _ \ / _ \| __|/ /  / _ \/ _\ |/ _ \|/ _ \ __/ __|     \n""$RC"
+echo -ne "$CYAN""         / \/  \ (_) | (_) | |_/ /__|  __/ (_| | (_| |  __/ |  \__ \    \n""$RC"
+echo -ne "$CYAN""         \_____/\___/ \___/ \__\____/\___|\__, |\__, |\___|_|  |___/    \n""$RC"
+echo -ne "$CYAN""                                          |___/ |___/                   \n""$RC"   
 
 # First sanity checks
 check_argvs
@@ -173,8 +173,8 @@ echo -ne "$YELLOW""INFO: Preparing the build environment...\n""$RC"
 source ./build/envsetup.sh
 
 # Lunch
-echo -ne "$YELLOW""INFO: Lunching lineage_$DEVICE-$VARIANT...\n""$RC"
-lunch lineage_$DEVICE-$VARIANT
+echo -ne "$YELLOW""INFO: Lunching bootleg_$DEVICE-$VARIANT...\n""$RC"
+lunch bootleg_$DEVICE-$VARIANT
 
 # Is installclean option enabled?
 if [ "$INSTALL_CLEAN" -eq "1" ]; then

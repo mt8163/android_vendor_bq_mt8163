@@ -16,7 +16,7 @@ source ~/.profile
 
 Further reading: https://source.android.com/setup/build/downloading
 
-#### 2. Download the Lineage OS 15.1 source code
+#### 2. Download the Bootleggers Oreo source code
 
 You may have to restart your shell after Step 1 to refresh the PATH variable.
 
@@ -27,30 +27,31 @@ You may have to restart your shell after Step 1 to refresh the PATH variable.
 mkdir -p ~/android/lineage
 cd <folder to contain source>
 # Initialise repo tool
-repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
-repo sync
+repo init -u https://github.com/BootleggersROM/manifest.git -b oreo
+repo sync -f --force-sync --no-clone-bundle -jx # Replace x with your cores.
 ```
 
 #### 3. Clone device repositories
 
 ```bash
-git clone https://github.com/mt8163/android_device_bq_aquaris_m8 device/bq/aquaris_m8
+# Replace all device_codename with the correct device codename (i.e: freezerfhd, aquaris_m8).
+git clone https://github.com/mt8163/android_device_bq_device_codename device/bq/device_codename
 git clone https://github.com/mt8163/android_vendor_bq_mt8163 vendor/bq/mt8163
-git clone https://github.com/mt8163/android_vendor_bq_aquaris_m8 vendor/bq/aquaris_m8
+git clone https://github.com/mt8163/android_vendor_bq_device_codename vendor/bq/device_codename
 ```
 
 #### 4. Apply device patches
 ```bash
-sh /device/bq/aquaris_m8/patches/install.sh
+sh /device/bq/device_codename/patches/install.sh # Replace device with aquaris_m8 or freezerfhd.
 ```
 
 #### 5. Build!
 ```bash
-curl https://raw.githubusercontent.com/mt8163/android_vendor_bq_mt8163/lineage-15.1/build/build.sh > build.sh
+curl https://raw.githubusercontent.com/mt8163/android_vendor_bq_mt8163/bootleggers-oreo/build/build.sh > build.sh
 chmod a+x build.sh
-./build.sh device_codename variant_version os_version
+./build.sh device_codename variant_version os_version rom_prefix
 # (Example):
-./build.sh aquaris_m8 userdebug 15.1
+./build.sh aquaris_m8 userdebug 15.1 bootleg
 ```
 
 **Ensure you have `adb` and `fastboot` installed and in your path before continuing!**
@@ -62,13 +63,14 @@ apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multi
 
 # Older than Ubuntu 16.04
 apt-get install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk2.8-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+```
 
 ### Improving build times
-
 To speed up subsequent builds, you can enable ccache support. You can do this by running this command before each build:
 ```bash
 export USE_CCACHE=1
 ```
+
 You can also add this line to your `~/.bashrc` file. After, you need to specify the maximum disk space ccache can use:
 ```bash
 # 25 GB
@@ -80,5 +82,4 @@ ccache -M 75G
 ```
 > This needs to be run once. Anywhere from 25GB-100GB will result in very noticeably increased build speeds (for instance, a typical 1hr build time can be reduced to 20min). **If you’re only building for one device, 25GB-50GB is fine.** If you plan to build for several devices that do not share the same kernel source, aim for 75GB-100GB. This space will be permanently occupied on your drive, so take this into consideration.
 >
-> [*From Lineage OS Wiki*](https://wiki.lineageos.org/devices/bacon/build#turn-on-caching-to-speed-up-build)
 
