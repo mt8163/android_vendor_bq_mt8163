@@ -17,20 +17,24 @@
 LOCAL_PATH_VENDOR := vendor/bq/mt8163
 
 # Debugging tool
-PRODUCT_PACKAGES +=\
-   debug_tool
+PRODUCT_PACKAGES += \
+    debug_tool
 
 # YGPS
-PRODUCT_PACKAGES +=\
-   YGPS
+PRODUCT_PACKAGES += \
+    YGPS
+
+# HDMI
+PRODUCT_PACKAGES += \
+    Overscan
 
 # Remove Unused/Useless packages
-PRODUCT_PACKAGES +=\
-   RemovePackages
+PRODUCT_PACKAGES += \
+    RemovePackages
 
 # MediaTekParts
-PRODUCT_PACKAGES +=\
-   MediaTekParts
+PRODUCT_PACKAGES += \
+    MediaTekParts
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -38,7 +42,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH_VENDOR)/proprietary/external/init/audioserver.rc:system/etc/init/audioserver.rc
 
 # Property Overrides
-PRODUCT_PROPERTY_OVERRIDES  += \
+PRODUCT_PROPERTY_OVERRIDES += \
    ro.config.hw_quickpoweron=true \
    ro.build.shutdown_timeout=0
 
