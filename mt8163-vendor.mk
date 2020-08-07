@@ -36,6 +36,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     MediaTekParts
 
+# Shim Symbols (common)
+PRODUCT_PACKAGES += \
+    libshim_bionic \
+    libshim_atomic \
+    libshim_audio \
+    libshim_omx \
+    libshim_camera \
+    libshim_xlog \
+    libshim_gps \
+    libshim_program_binary_service \
+    libshim_wvm \
+    libshim_drm \
+    libshim_media
+
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH_VENDOR)/proprietary/external/init/mediaserver.rc:system/etc/init/mediaserver.rc \
