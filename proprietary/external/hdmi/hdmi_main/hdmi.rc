@@ -1,0 +1,6 @@
+on init
+
+service hdmi /system/bin/hdmi
+        class main
+        user system
+        group system net_admin inet

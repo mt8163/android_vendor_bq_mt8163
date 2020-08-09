@@ -28,6 +28,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Overscan
 
+# HDMI Packages
+PRODUCT_PACKAGES += \
+    hdmi \
+    hdmimanager \
+    libhdmiservice \
+    libhdmi
+
 # Remove Unused/Useless packages
 PRODUCT_PACKAGES += \
     RemovePackages
