@@ -35,6 +35,10 @@ PRODUCT_PACKAGES += \
     libhdmiservice \
     libhdmi
 
+# WFD
+PRODUCT_PACKAGES += \
+    audio.r_submix.mt8163
+
 # Remove Unused/Useless packages
 PRODUCT_PACKAGES += \
     RemovePackages
