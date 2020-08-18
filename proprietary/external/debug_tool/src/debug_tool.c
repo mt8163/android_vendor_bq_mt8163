@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -9,10 +10,8 @@
 #ifdef __ANDROID__
 #include <cutils/properties.h>
 #endif
-#include "functions.h"
 
-#define LOG_DIRECTORY "/data/local/tmp/logging/"
-#define SELINUX "/sys/fs/selinux/enforce"
+#include "functions.h"
 
 int main(int argc, char *argv[])
 {
@@ -65,9 +64,9 @@ int main(int argc, char *argv[])
 
         if(strcmp(argv[1], "-d") == 0)
         {
-        int response = check_root();
-        if (response == -1) {
-            printf("[-] Attempt to execute a privileged action being an unqualified user?\n\n");
+
+        if (getuid() != 0) {
+            printf("[!] You need to be root to execute this action.\n\n");
             return -1;
         }
 
@@ -92,16 +91,14 @@ int main(int argc, char *argv[])
 
         if(strcmp(argv[1], "-s") == 0)
         {
-           int response = check_root();
            int input;
 
-           if (response == -1) 
-           {
-               printf("[-] Attempt to write to a secured file being an unqualified user?\n\n");
+           if (getuid() != 0) {
+               printf("[!] You need to be root to execute this action.\n\n");
                return -1;
            }
 
-           printf("[?] Switch SELinux to permissive (0) or enforcing (1)?\n");
+           printf("[?] Switch SELinux to permissive (0) or enforcing (1)? >> ");
            scanf("%d", &input);
 
            /* Valid values are 0 and 1 */
@@ -125,5 +122,35 @@ int main(int argc, char *argv[])
 
            printf("[+] Done!\n\n");
         }
+
+        if(strcmp(argv[1], "-t") == 0)
+        {
+            if (getuid() != 0) {
+                printf("[!] You need to be root to execute this action.\n\n");
+                return -1;
+            }
+
+            printf("[?] Searching for tombstones...\n");
+
+            /**
+             * Actually check only search for the first tombstone (tombstone_00).
+             * If this one is present, then continue the process.
+             **/
+            if (find_file("/data/tombstones/", "tombstone_00") != 0)
+            {
+                if (__copy_folder("/data/tombstones", LOG_DIRECTORY) != 0)
+                {
+                    printf("[-] Failed to copy tombstones folder...\n\n");
+                    return -1;
+                }
+            } else {
+                printf("[?] Nothing to do: Tombstones folder is empty.\n\n");
+                return 0;
+            }
+
+            printf("[+] Done!\n\n");
+            return 0;
+        }               
+
         return 0;
 }
