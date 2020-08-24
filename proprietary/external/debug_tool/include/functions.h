@@ -46,8 +46,8 @@ int check_root();
 int write_int(char *file, int value);
 
 /**
- * Finds a file under the given path.
+ * Checks if the specified path is empty or not.
  */
-int find_file(char *path, char *file_name);
+bool is_dir_empty(char *dirname);
 
 #endif /* DEBUG_TOOL_ */

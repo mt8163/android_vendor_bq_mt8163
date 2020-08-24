@@ -10,7 +10,6 @@
 #ifdef __ANDROID__
 #include <cutils/properties.h>
 #endif
-
 #include "functions.h"
 
 int main(int argc, char *argv[])
@@ -131,12 +130,7 @@ int main(int argc, char *argv[])
             }
 
             printf("[?] Searching for tombstones...\n");
-
-            /**
-             * Actually check only search for the first tombstone (tombstone_00).
-             * If this one is present, then continue the process.
-             **/
-            if (find_file("/data/tombstones/", "tombstone_00") != 0)
+            if (!is_dir_empty("/data/tombstones"))
             {
                 if (__copy_folder("/data/tombstones", LOG_DIRECTORY) != 0)
                 {

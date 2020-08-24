@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdbool.h>
+#include <dirent.h>
 
 #include "functions.h"
 
@@ -44,7 +46,7 @@ int __copy_folder(char *src, char *dest)
 {
     char cmd[MAX_LENGHT];
 
-    /* FIXME: Stop using system commands. This it's a security hole. */
+    /* FIXME: Stop using system commands to copy folders */
     snprintf(cmd, 100, "cp -r %s %s/", src, dest);
 
     return system(cmd);
@@ -68,22 +70,18 @@ int write_int(char *file, int value)
    return 0;
 }
 
-int find_file(char *path, char *file_name)
+bool is_dir_empty(char *dirname) 
 {
-    int ret;
-    char cmd[MAX_LENGHT];
-    char *files;
+    int n = 0;
+    struct dirent *d;
+    DIR *dir = opendir(dirname);
 
-    /* FIXME: Stop using pipe to list all the files */
-    snprintf(cmd, 100, "ls %s/", path);
-    files = __exec_sh(cmd);
+    if (dir == NULL) return false;
 
-#if 0
-    printf("[DBG] PATH = %s\n", path);
-    printf("[DBG] FILE NAME = %s\n", file_name);
-    printf("[DBG] PRESENT FILES = %s", files);
-#endif
+    while ((d = readdir(dir)) != NULL) if(++n > 2) break;
 
-    if (strstr(files, file_name) != NULL) return 1; else return 0;
+    closedir(dir);
+
+    if (n <= 2) return true; else return false;
 }
 
