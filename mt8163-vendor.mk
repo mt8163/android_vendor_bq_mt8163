@@ -57,7 +57,6 @@ PRODUCT_PACKAGES += \
     libshim_xlog \
     libshim_gps \
     libshim_program_binary_service \
-    libshim_wvm \
     libshim_drm \
     libshim_media
 
