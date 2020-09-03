@@ -6,6 +6,7 @@
     <!-- Preference groups -->
     <string name="gestures_settings_title">Gestos</string>
     <string name="gps_settings_title">GPS</string>
+    <string name="hdmi_settings_title">HDMI</string>
 
     <!-- Gestures -->
     <string name="pref_dt2w_title">D2TW (Double Tap To Wake)</string>
@@ -18,6 +19,10 @@
     <!-- Menu -->
     <string name="action_reboot_title">Reiniciar</string>
     <string name="action_reboot_description">¿Quieres reiniciar ahora mismo?</string>
+
+    <!-- HDMI -->
+    <string name="pref_hdmi_title">HDMI</string>
+    <string name="pref_hdmi_description">Activa/Desactiva el HDMI.</string>
 
     <!-- Dialog options -->
     <string name="alert_yes">Si</string>

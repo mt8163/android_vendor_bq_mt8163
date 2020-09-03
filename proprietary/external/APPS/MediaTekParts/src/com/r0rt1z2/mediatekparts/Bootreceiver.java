@@ -15,6 +15,7 @@ import com.r0rt1z2.mediatekparts.Functions;
 public class Bootreceiver extends BroadcastReceiver  {
 
     private static final String TAG = "MediaTekParts";
+    private static final String HDMI_PROP = "persist.hdmi.enabled";
 
     SharedPreferences preferenceManager;
 
@@ -28,6 +29,11 @@ public class Bootreceiver extends BroadcastReceiver  {
         // Enable DT2W if user enabled it
         if (Functions.IsDT2WAvailable() && preferenceManager.getBoolean("pref_dt2w", false)) {
             Functions.SetDT2WValue(true);
+        }
+
+        // Enable HDMI if user enabled it
+        if (preferenceManager.getBoolean("pref_hdmi", false)) {
+            SystemPropertiesReflection.SetSystemString(HDMI_PROP, "1");
         }
     }
 }

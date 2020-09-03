@@ -6,6 +6,7 @@
     <!-- Preference groups -->
     <string name="gestures_settings_title">Gestures</string>
     <string name="gps_settings_title">GPS</string>
+    <string name="hdmi_settings_title">HDMI</string>
 
     <!-- Gestures -->
     <string name="pref_dt2w_title">Double tap to wake</string>
@@ -16,6 +17,11 @@
     <string name="pref_gps_title">YGPS</string>
     <string name="pref_gps_description">Hide the YGPS application used to debug GPS and AGPS.</string>
     <string name="pref_gps_key" translatable="false">pref_gps</string>
+
+    <!-- HDMI -->
+    <string name="pref_hdmi_title">HDMI</string>
+    <string name="pref_hdmi_description">Enable/Disable HDMI.</string>
+    <string name="pref_hdmi_key" translatable="false">pref_hdmi</string>
 
     <!-- Menu -->
     <string name="action_reboot_title">Reboot</string>

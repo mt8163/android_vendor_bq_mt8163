@@ -22,4 +22,14 @@
             android:title="@string/pref_gps_title" />
     </PreferenceCategory>
 
+    <!-- HDMI -->
+    <PreferenceCategory
+            android:key="hdmi_settings"
+            android:title="@string/hdmi_settings_title">
+        <SwitchPreference
+            android:key="@string/pref_hdmi_key"
+            android:summary="@string/pref_hdmi_description"
+            android:title="@string/pref_hdmi_title" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

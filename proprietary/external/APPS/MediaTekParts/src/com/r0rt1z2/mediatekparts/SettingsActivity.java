@@ -27,6 +27,7 @@ public class SettingsActivity extends SettingsDrawerActivity {
 
     private static final String TAG = "MediaTekParts";
     private static final String PROPERTY_YGPS_HANDLER = "persist.ygps.enable";
+    private static final String PROPERTY_HDMI_HANDLER = "persist.hdmi.enabled";
     private static final String STRING_NULL = "null";
     private static final int MENU_REBOOT = Menu.FIRST;
 
@@ -128,8 +129,8 @@ public class SettingsActivity extends SettingsDrawerActivity {
             /* Set UP Double-Tap-To-Wake */
             switchPref = (SwitchPreference)findPreference("pref_dt2w");
             functionAvailable = Functions.IsDT2WAvailable();
+            boolean savedValue = preferenceManager.getBoolean("pref_dt2w", false);
             if (functionAvailable) {
-                boolean savedValue = preferenceManager.getBoolean("pref_dt2w", false);
                 if (savedValue) {
                     switchPref.setChecked(savedValue);
                     Functions.SetDT2WValue(savedValue);
@@ -138,9 +139,18 @@ public class SettingsActivity extends SettingsDrawerActivity {
                 switchPref.setEnabled(false);
             }
 
+            /* Set UP HDMI */
+            switchPref = (SwitchPreference)findPreference("pref_hdmi");
+            savedValue = preferenceManager.getBoolean("pref_hdmi", false);
+            if (savedValue) {
+                int hdmi_on = 1;
+                switchPref.setChecked(savedValue);
+            } else { int hdmi_on = 0; }
+            SystemPropertiesReflection.SetSystemString(PROPERTY_HDMI_HANDLER, "1");
+
             /* Set up YGPS handler */
             switchPref = (SwitchPreference)findPreference("pref_gps");
-            boolean savedValue = preferenceManager.getBoolean("pref_gps", false);
+            savedValue = preferenceManager.getBoolean("pref_gps", false);
 
             if (savedValue) {
                 switchPref.setChecked(true);
@@ -161,6 +171,11 @@ public class SettingsActivity extends SettingsDrawerActivity {
                 case R.string.pref_dt2w_key: {
                     Functions.SetDT2WValue(newValue);
                     editor.putBoolean("pref_dt2w", newValue);
+                    break;
+                }
+                case R.string.pref_hdmi_key: {
+                    SystemPropertiesReflection.SetSystemString(PROPERTY_HDMI_HANDLER, newValue ? "1" : "0");
+                    editor.putBoolean("pref_hdmi", newValue);
                     break;
                 }
                 case R.string.pref_gps_key: {

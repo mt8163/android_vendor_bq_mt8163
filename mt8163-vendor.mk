@@ -71,3 +71,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
    ro.config.hw_quickpoweron=true \
    ro.build.shutdown_timeout=0
 
+# Force HDMI by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.hdmi.enabled=1
