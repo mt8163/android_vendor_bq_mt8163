@@ -41,7 +41,7 @@ git clone https://github.com/mt8163/android_vendor_bq_aquaris_m8 vendor/bq/aquar
 
 #### 4. Apply device patches
 ```bash
-sh /device/bq/aquaris_m8/patches/install.sh
+sh vendor/bq/mt8163/build/patches/install.sh
 ```
 
 #### 5. Build!
