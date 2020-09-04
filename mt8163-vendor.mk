@@ -20,10 +20,6 @@ LOCAL_PATH_VENDOR := vendor/bq/mt8163
 PRODUCT_PACKAGES += \
     debug_tool
 
-# YGPS
-PRODUCT_PACKAGES += \
-    YGPS
-
 # HDMI
 PRODUCT_PACKAGES += \
     Overscan
