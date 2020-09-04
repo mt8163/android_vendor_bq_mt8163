@@ -3,10 +3,10 @@
 #include <media/stagefright/MetaData.h>
 #include <media/stagefright/MediaDefs.h>
 #include <media/stagefright/MediaErrors.h>
-#include <media/stagefright/MediaSource.h>
 #include <media/stagefright/NuMediaExtractor.h>
-
 #include <media/stagefright/Utils.h>
+#include <media/MediaSource.h>
+#include <media/IMediaSource.h>
 
 #include <camera/CameraBase.h>
 #include <camera/CameraUtils.h>
@@ -75,6 +75,8 @@ extern status_t _ZN7android13MediaRecorder13setOutputFileEi(int fd);
 /*----------------------------------------------------*/
 extern void _ZN7android14MediaExtractor23RegisterDefaultSniffersEv() {/* FIX ME! */}
 /*----------------------------------------------------*/
+extern status_t _ZN7android16NuMediaExtractor11selectTrackEjxNS_10MediaTrack11ReadOptions8SeekModeE(size_t index,
+    int64_t startTimeUs, MediaSource::ReadOptions::SeekMode mode) { return 0; } //FIXME
 
 /* 
 * FUNCTION NAME: DataSource::RegisterDefaultSniffers.
@@ -219,6 +221,17 @@ int _ZN7android10CameraBaseINS_6CameraENS_12CameraTraitsIS1_EEE13getCameraInfoEi
 status_t _ZN7android13MediaRecorder13setOutputFileEixx(int fd)
 {
     return _ZN7android13MediaRecorder13setOutputFileEi(fd);
+}
+
+/* 
+* FUNCTION NAME: NuMediaExtractor::setTrack
+* USE: Sets the given track (?)
+* NOTES: It looks like this function was renamed in P. Stub out to the correct call.
+*/
+status_t _ZN7android16NuMediaExtractor11selectTrackEm(size_t index)
+{
+    MediaSource::ReadOptions::SeekMode mode;
+    return _ZN7android16NuMediaExtractor11selectTrackEjxNS_10MediaTrack11ReadOptions8SeekModeE(index, static_cast<uint64_t>(0), mode);
 }
 
 #ifdef __cplusplus
