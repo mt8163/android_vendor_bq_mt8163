@@ -1,0 +1,73 @@
+From df940a1f69cfb3a16e5780679d8d4e1d76d9cc85 Mon Sep 17 00:00:00 2001
+From: bilux <i.bilux@gmail.com>
+Date: Fri, 4 Sep 2020 23:09:58 +0200
+Subject: [PATCH] Fix "_ZN7android13GraphicBufferC1Ejjij" symbol
+
+Signed-off-by: bilux <i.bilux@gmail.com>
+---
+ libs/ui/Android.bp                 |  1 -
+ libs/ui/GraphicBuffer.cpp          | 20 ++++++++++++++++++++
+ libs/ui/include/ui/GraphicBuffer.h |  4 ++++
+ 3 files changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/libs/ui/Android.bp b/libs/ui/Android.bp
+index 25c353a51..f2bcc3685 100644
+--- a/libs/ui/Android.bp
++++ b/libs/ui/Android.bp
+@@ -22,7 +22,6 @@ cc_library_shared {
+     clang: true,
+     cflags: [
+         "-Wall",
+-        "-Werror",
+     ],
+     cppflags: [
+         "-Weverything",
+diff --git a/libs/ui/GraphicBuffer.cpp b/libs/ui/GraphicBuffer.cpp
+index 7670ac6fb..55f7edeac 100644
+--- a/libs/ui/GraphicBuffer.cpp
++++ b/libs/ui/GraphicBuffer.cpp
+@@ -58,6 +58,26 @@ GraphicBuffer::GraphicBuffer()
+     handle = NULL;
+ }
+ 
++#ifdef MTK_HARDWARE
++GraphicBuffer::GraphicBuffer(uint32_t inWidth, uint32_t inHeight,
++        PixelFormat inFormat, uint32_t inUsage)
++    : BASE(), mOwner(ownData), mBufferMapper(GraphicBufferMapper::get()),
++      mInitCheck(NO_ERROR), mId(getUniqueId()), mGenerationNumber(0)
++{
++    width  =
++    height =
++    stride =
++    format =
++    usage_deprecated = 0;
++    usage  = 0;
++    layerCount = 0;
++    handle = NULL;
++    std::string requestorName = "<unknown>";
++    mInitCheck = initWithSize(inWidth, inHeight, inFormat, 0,
++            inUsage, std::move(requestorName));
++}
++#endif
++
+ // deprecated
+ GraphicBuffer::GraphicBuffer(uint32_t inWidth, uint32_t inHeight,
+         PixelFormat inFormat, uint32_t inUsage, std::string requestorName)
+diff --git a/libs/ui/include/ui/GraphicBuffer.h b/libs/ui/include/ui/GraphicBuffer.h
+index cc38982e6..38d01811c 100644
+--- a/libs/ui/include/ui/GraphicBuffer.h
++++ b/libs/ui/include/ui/GraphicBuffer.h
+@@ -81,6 +81,10 @@ public:
+ 
+     // Create a GraphicBuffer by allocating and managing a buffer internally.
+     // This function is privileged.  See reallocate for details.
++#ifdef MTK_HARDWARE
++    GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
++            uint32_t inUsage);
++#endif
+     GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
+             uint32_t inLayerCount, uint64_t inUsage,
+             std::string requestorName = "<Unknown>");
+-- 
+2.17.1
+
