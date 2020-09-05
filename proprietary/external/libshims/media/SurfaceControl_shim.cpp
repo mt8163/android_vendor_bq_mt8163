@@ -55,7 +55,7 @@ android::SurfaceComposerClient::Transaction *t;
 extern "C" {
     extern void _ZN7android14SurfaceControl8setLayerEi(int32_t) {}
     extern void _ZN7android14SurfaceControl7destroyEv(void);
-    extern void *_ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(unsigned long long) { return 0 } /*FIXME*/
+    extern void *_ZN7android21SurfaceComposerClient23getPhysicalDisplayTokenEy(unsigned long long) { return 0; } /*FIXME*/
 
     void _ZN7android21SurfaceComposerClient13createSurfaceERKNS_7String8EjjijPNS_14SurfaceControlEjj(
 	    android::String8 const & s,
