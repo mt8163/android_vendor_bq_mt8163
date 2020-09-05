@@ -41,7 +41,8 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
 	camera/SensorManager.cpp \
-    camera/camera_shim.cpp
+    camera/camera_shim.cpp \
+    camera/GraphicBuffer.cpp
 
 LOCAL_SHARED_LIBRARIES := \
 	libbinder \
