@@ -234,6 +234,15 @@ status_t _ZN7android16NuMediaExtractor11selectTrackEm(size_t index)
     return _ZN7android16NuMediaExtractor11selectTrackEjxNS_10MediaTrack11ReadOptions8SeekModeE(index, static_cast<uint64_t>(0), mode);
 }
 
+/* 
+* FUNCTION NAME: Fence::~Fence
+* USE: Fence destructor
+* NOTES: No-op, the explicit destructor was replaced with = default.
+*/
+void _ZN7android5FenceD1Ev() {
+  // no-op, the explicit destructor was replaced with = default;
+}
+
 #ifdef __cplusplus
 }
 #endif
