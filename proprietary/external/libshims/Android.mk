@@ -144,6 +144,17 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
+# MsensorDaemon Shim
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := misc/mute_log_shim.cpp
+
+LOCAL_MODULE := libshim_mute_log
+
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_PROPRIETARY_MODULE := true
+include $(BUILD_SHARED_LIBRARY)
+
 # Media Shim
 include $(CLEAR_VARS)
 

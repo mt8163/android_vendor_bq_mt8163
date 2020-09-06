@@ -59,7 +59,8 @@ PRODUCT_PACKAGES += \
     libshim_program_binary_service \
     libshim_wvm \
     libshim_drm \
-    libshim_media
+    libshim_media \
+    libshim_mute_log
 
 # Init
 PRODUCT_COPY_FILES += \
