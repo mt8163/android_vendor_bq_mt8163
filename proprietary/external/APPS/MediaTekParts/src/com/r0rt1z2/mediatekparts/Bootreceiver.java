@@ -15,7 +15,7 @@ import com.r0rt1z2.mediatekparts.Functions;
 public class Bootreceiver extends BroadcastReceiver  {
 
     private static final String TAG = "MediaTekParts";
-    private static final String HDMI_PROP = "persist.hdmi.enabled";
+    private static final String HDMI_PROP = "sys.service.hdmi.enable";
 
     SharedPreferences preferenceManager;
 

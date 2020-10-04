@@ -28,28 +28,15 @@
 #include <binder/ProcessState.h>
 #include <binder/IServiceManager.h>
 #include <utils/Log.h>
-#include <cutils/properties.h>
 
 #ifdef MTK_HDMI_SUPPORT
 #include "MtkHdmiService.h"
 #endif
 
-#define HDMI_CONTROL_PROP "persist.hdmi.enabled"
-
 using namespace android;
 
 int main(int argc, char **argv)
 {
-    char hdmi_ctl[1024];
-    __system_property_get(HDMI_CONTROL_PROP, hdmi_ctl);
-
-    ALOGI("[MtkHdmiService] hdmi_ctl=%s", hdmi_ctl);
-
-    if (strcmp(hdmi_ctl, "0") == 0) {
-        ALOGI("[MtkHdmiService] HDMI is disabled by property (%s), bailing out...", hdmi_ctl);
-        return -1;
-    }
-
     sp<ProcessState> proc(ProcessState::self());
     sp<IServiceManager> sm = defaultServiceManager();
     ALOGI("[MtkHdmiService]ServiceManager: %p", sm.get());

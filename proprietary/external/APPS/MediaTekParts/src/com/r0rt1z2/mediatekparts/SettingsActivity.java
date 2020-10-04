@@ -27,7 +27,7 @@ public class SettingsActivity extends SettingsDrawerActivity {
 
     private static final String TAG = "MediaTekParts";
     private static final String PROPERTY_YGPS_HANDLER = "persist.ygps.enable";
-    private static final String PROPERTY_HDMI_HANDLER = "persist.hdmi.enabled";
+    private static final String PROPERTY_HDMI_HANDLER = "sys.service.hdmi.enable";
     private static final String STRING_NULL = "null";
     private static final int MENU_REBOOT = Menu.FIRST;
 

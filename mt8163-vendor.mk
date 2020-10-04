@@ -74,4 +74,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Force HDMI by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hdmi.enabled=1
+    sys.service.hdmi.enable=0
