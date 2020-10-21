@@ -15,6 +15,10 @@ namespace android {
 		    looper, mime, encoder, err, pid, 0);
     }
 
+    void _ZN7android10MediaCodec12CreateByTypeERKNS_2spINS_7ALooperEEEPKcbPii(
+        void *looper, void *mime, int encoder, int *err, pid_t pid) { 
+    }
+
     extern "C" void _ZNK7android10MediaCodec15getInputBuffersEPNS_6VectorINS_2spINS_7ABufferEEEEE(Vector<sp<ABuffer> > *buffers) {
 	    _ZNK7android10MediaCodec15getInputBuffersEPNS_6VectorINS_2spINS_16MediaCodecBufferEEEEE(buffers);
     }
